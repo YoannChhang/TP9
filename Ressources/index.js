@@ -64,8 +64,11 @@ function afficheLaby() //ne rien modifier dans cette fonction
 
 const update = () => {
 
+    let startTime = new.Date()
+
     setInterval(function(){
 
+        document.getElementById("timer").innerHTML = timer(startTime, new.Date())
         afficheLaby()
 
     }, 200)
@@ -130,3 +133,12 @@ document.addEventListener("keyup", (event) => {
     }
 
 })
+
+const timer = (start, end) => {
+
+    let interval = end - start
+    return `${interval.getHours} : ${interval.getMinutes} : ${interval.getSeconds}`
+
+}
+
+
