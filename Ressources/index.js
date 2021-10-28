@@ -64,46 +64,69 @@ function afficheLaby() //ne rien modifier dans cette fonction
 
 const update = () => {
 
+    setInterval(function(){
 
+        afficheLaby()
 
-}
-
-const movement = () => {
-
-    document.addEventListener("keydown", (event) => {
-
-        if (event.code == "KeyZ"){
-            
-            if(lady[yplayer - 1][xplayer] != m){
-                yplayer -= 1
-            }
-
-        }
-
-        if (event.code == "KeyQ"){
-            
-            if(lady[yplayer][xplayer - 1] != m){
-                xplayer -= 1
-            }
-
-        }
-
-        if (event.code == "KeyS"){
-            
-            if(lady[yplayer + 1][xplayer] != m){
-                yplayer += 1
-            }
-
-        }
-
-        if (event.code == "KeyD"){
-            
-            if(lady[yplayer][xplayer + 1] != m){
-                xplayer += 1
-            }
-
-        }
-
-    })
+    }, 200)
 
 }
+
+document.addEventListener("keyup", (event) => {
+
+    if (event.code == "KeyW"){
+        
+        if(laby[yplayer - 1][xplayer] != m){
+            laby[yplayer - 1][xplayer] = p
+            laby[yplayer][xplayer] = b
+
+            // laby[yplayer][xplayer], laby[yplayer - 1][xplayer] = laby[yplayer - 1][xplayer], laby[yplayer][xplayer]
+            yplayer -= 1
+            console.log(laby)
+        }
+
+    }
+
+    if (event.code == "KeyA"){
+        
+        if(laby[yplayer][xplayer - 1] != m){
+
+            laby[yplayer][xplayer - 1] = p
+            laby[yplayer][xplayer] = b
+
+            // laby[yplayer][xplayer], laby[yplayer][xplayer - 1] = laby[yplayer][xplayer - 1], laby[yplayer][xplayer]
+            xplayer -= 1
+            console.log(laby)
+        }
+
+    }
+
+    if (event.code == "KeyS"){
+        
+        if(laby[yplayer + 1][xplayer] != m){
+
+            laby[yplayer + 1][xplayer] = p
+            laby[yplayer][xplayer] = b
+
+            // laby[yplayer][xplayer], laby[yplayer + 1][xplayer] = laby[yplayer + 1][xplayer], laby[yplayer][xplayer]
+            yplayer += 1
+            console.log(laby)
+        }
+
+    }
+
+    if (event.code == "KeyD"){
+        
+        if(laby[yplayer][xplayer + 1] != m){
+
+            laby[yplayer][xplayer + 1] = p
+            laby[yplayer][xplayer] = b
+
+            // laby[yplayer][xplayer], laby[yplayer][xplayer + 1] = laby[yplayer][xplayer + 1], laby[yplayer][xplayer]
+            xplayer += 1
+            console.log(laby)
+        }
+
+    }
+
+})
