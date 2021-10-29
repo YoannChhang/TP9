@@ -70,7 +70,7 @@ function afficheLaby() //ne rien modifier dans cette fonction
 const update = () => {
 
     let startTime = new Date()
-
+    document.getElementById("butt").innerHTML = "";
     setInterval(function(){
 
         document.getElementById("timer").innerHTML = timer(startTime, new Date())
@@ -147,10 +147,10 @@ const timer = (start, end) => {
 }
 
 const checkPos = (element) => {
-
-    console.log(element.id)
-    poxX = Number(element.id[0])
+    
+    posX = Number(element.id[0])
     posY = Number(element.id[1])
+    console.log(posX, posY)
 
 }
 
@@ -164,7 +164,7 @@ document.addEventListener("click", (event) => {
 
             // laby[yplayer][xplayer], laby[yplayer - 1][xplayer] = laby[yplayer - 1][xplayer], laby[yplayer][xplayer]
             yplayer -= 1
-            console.log(laby)
+            // console.log(laby)
         }
 
     }
@@ -208,7 +208,5 @@ document.addEventListener("click", (event) => {
             xplayer += 1
             console.log(laby)
         }
-
     }
-
 })
