@@ -6,6 +6,11 @@ f="f"; //représente le trophée
 xplayer=1; //position initial du personnage sur l'axe X
 yplayer=1; //postition initial du personnage sur l'axe Y
 //tableau à double entrée représentant votre labyrinthe, vous pouvez le modifier pour comprendre le fonctionnement
+
+var posX = 1
+var posY = 1 
+
+
 var laby = [[m,m,m,m,m,m,m,m,m,m],
             [m,p,m,b,b,b,b,b,b,m],
             [m,b,m,b,m,m,m,b,m,m],
@@ -30,19 +35,19 @@ function afficheLaby() //ne rien modifier dans cette fonction
             if (laby[i][j]==m)
             {
             insertion+="<td>";
-            insertion+=`<img width='52'height='52' src='Assets/stonewall.png' id="${ji}" onhover="">`;
+            insertion+=`<img width='52'height='52' src='Assets/stonewall.png' id="${j.toString() + i.toString()}" onmouseover="checkPos(this)">`;
             insertion+="</td>";
             }
             if (laby[i][j]==p)
             {
             insertion+="<td>";
-            insertion+=`<img width='52' height='52' style='background-image:Assets/Ground.png' src='Assets/Heros.png' id="${ji}" onhover="">`;
+            insertion+=`<img width='52' height='52' style='background-image:Assets/Ground.png' src='Assets/Heros.png' id="${j.toString() + i.toString()}" onmouseover="checkPos(this)">`;
             insertion+="</td>";
             }
             if (laby[i][j]==b)
             {
             insertion+="<td>";
-            insertion+=`<img width='52' height='52' src='Assets/Ground.png' id="${ji}" onhover="">`;
+            insertion+=`<img width='52' height='52' src='Assets/Ground.png' id="${j.toString() + i.toString()}" onmouseover="checkPos(this)">`;
             insertion+="</td>";
             }
 
@@ -50,7 +55,7 @@ function afficheLaby() //ne rien modifier dans cette fonction
             if (laby[i][j]==f)
             {
             insertion+="<td>";
-            insertion+=`<img width='52' height='52'src='Assets/Trophy.png' id="${ji}" onhover="">`;
+            insertion+=`<img width='52' height='52'src='Assets/Trophy.png' id="${j.toString() + i.toString()}" onmouseover="checkPos(this)">`;
             insertion+="</td>";
             }
             
@@ -70,7 +75,6 @@ const update = () => {
 
         document.getElementById("timer").innerHTML = timer(startTime, new Date())
         afficheLaby()
-        console.log(MouseEvent.event.clientX)
 
     }, 1000)
 
@@ -142,3 +146,69 @@ const timer = (start, end) => {
     
 }
 
+const checkPos = (element) => {
+
+    console.log(element.id)
+    poxX = Number(element.id[0])
+    posY = Number(element.id[1])
+
+}
+
+document.addEventListener("click", (event) => {
+
+    if (posX == xplayer && posY == yplayer - 1){
+        
+        if(laby[yplayer - 1][xplayer] != m){
+            laby[yplayer - 1][xplayer] = p
+            laby[yplayer][xplayer] = b
+
+            // laby[yplayer][xplayer], laby[yplayer - 1][xplayer] = laby[yplayer - 1][xplayer], laby[yplayer][xplayer]
+            yplayer -= 1
+            console.log(laby)
+        }
+
+    }
+
+    else if (posX == xplayer - 1 && posY == yplayer){
+        
+        if(laby[yplayer][xplayer - 1] != m){
+
+            laby[yplayer][xplayer - 1] = p
+            laby[yplayer][xplayer] = b
+
+            // laby[yplayer][xplayer], laby[yplayer][xplayer - 1] = laby[yplayer][xplayer - 1], laby[yplayer][xplayer]
+            xplayer -= 1
+            console.log(laby)
+        }
+
+    }
+
+    else if (posX == xplayer && posY == yplayer + 1){
+        
+        if(laby[yplayer + 1][xplayer] != m){
+
+            laby[yplayer + 1][xplayer] = p
+            laby[yplayer][xplayer] = b
+
+            // laby[yplayer][xplayer], laby[yplayer + 1][xplayer] = laby[yplayer + 1][xplayer], laby[yplayer][xplayer]
+            yplayer += 1
+            console.log(laby)
+        }
+
+    }
+
+    else if (posX == xplayer + 1 && posY == yplayer){
+        
+        if(laby[yplayer][xplayer + 1] != m){
+
+            laby[yplayer][xplayer + 1] = p
+            laby[yplayer][xplayer] = b
+
+            // laby[yplayer][xplayer], laby[yplayer][xplayer + 1] = laby[yplayer][xplayer + 1], laby[yplayer][xplayer]
+            xplayer += 1
+            console.log(laby)
+        }
+
+    }
+
+})
