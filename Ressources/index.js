@@ -30,19 +30,19 @@ function afficheLaby() //ne rien modifier dans cette fonction
             if (laby[i][j]==m)
             {
             insertion+="<td>";
-            insertion+="<img width='52'height='52' src='Assets/stonewall.png'>";
+            insertion+=`<img width='52'height='52' src='Assets/stonewall.png' id="${ji}" onhover="">`;
             insertion+="</td>";
             }
             if (laby[i][j]==p)
             {
             insertion+="<td>";
-            insertion+="<img width='52' height='52' style='background-image:Assets/Ground.png' src='Assets/Heros.png'>";
+            insertion+=`<img width='52' height='52' style='background-image:Assets/Ground.png' src='Assets/Heros.png' id="${ji}" onhover="">`;
             insertion+="</td>";
             }
             if (laby[i][j]==b)
             {
             insertion+="<td>";
-            insertion+="<img width='52' height='52' src='Assets/Ground.png'>";
+            insertion+=`<img width='52' height='52' src='Assets/Ground.png' id="${ji}" onhover="">`;
             insertion+="</td>";
             }
 
@@ -50,7 +50,7 @@ function afficheLaby() //ne rien modifier dans cette fonction
             if (laby[i][j]==f)
             {
             insertion+="<td>";
-            insertion+="<img width='52' height='52'src='Assets/Trophy.png'>";
+            insertion+=`<img width='52' height='52'src='Assets/Trophy.png' id="${ji}" onhover="">`;
             insertion+="</td>";
             }
             
@@ -70,6 +70,7 @@ const update = () => {
 
         document.getElementById("timer").innerHTML = timer(startTime, new Date())
         afficheLaby()
+        console.log(MouseEvent.event.clientX)
 
     }, 1000)
 
@@ -140,3 +141,4 @@ const timer = (start, end) => {
     return `${interval[0]} : ${interval[1]} : ${interval[2]}`
     
 }
+
